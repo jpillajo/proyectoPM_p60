@@ -46,7 +46,23 @@ export class LogInPage implements OnInit {
     }
   }
 
-  validar(){
+  async validar(){
+    /*const datos = await this.database.getDoc(this.path, this.usuario.email);
+    datos.forEach(doc => {
+      console.log(doc.id, '=>', doc.data());
+    });
+    console.log(datos['nombres']);*/
+    this.database.getDoc(this.path, this.usuario.email).subscribe(res =>{
+      //console.log(res);
+      const respuesta:any = res[0];
+      console.log(respuesta['nombres'])
+      console.log(respuesta['apellidos'])
+      /*const array = [];
+      for(var i in respuesta) {
+        array.push([i,respuesta[i]]);
+      }
+      console.log(array);*/
+    });
     this.auth.login(this.usuario.email, this.usuario.password).then( res => {
       console.log("Credenciales correctas");
       this.limpiarUsuario();
