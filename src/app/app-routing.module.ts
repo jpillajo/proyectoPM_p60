@@ -36,10 +36,6 @@ const routes: Routes = [
     loadChildren: () => import('./adoptar/datos-adopcion/datos-adopcion.module').then( m => m.DatosAdopcionPageModule)
   },
   {
-    path: 'info-adopcion',
-    loadChildren: () => import('./adoptar/info-adopcion/info-adopcion.module').then( m => m.InfoAdopcionPageModule)
-  },
-  {
     path: 'log-in',
     loadChildren: () => import('./administrador/log-in/log-in.module').then( m => m.LogInPageModule)
   },
@@ -67,10 +63,6 @@ const routes: Routes = [
   {
     path: 'datos-puesto-adopcion-persona',
     loadChildren: () => import('./administrador/datos-puesto-adopcion-persona/datos-puesto-adopcion-persona.module').then( m => m.DatosPuestoAdopcionPersonaPageModule)
-  },
-  {
-    path: 'infoadopcion2',
-    loadChildren: () => import('./adoptar/infoadopcion2/infoadopcion2.module').then( m => m.Infoadopcion2PageModule)
   },
   {
     path: 'datos',

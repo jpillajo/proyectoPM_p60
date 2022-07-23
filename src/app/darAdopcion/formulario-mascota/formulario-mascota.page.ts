@@ -47,17 +47,17 @@ export class FormularioMascotaPage implements OnInit {
       //const nombre_foto = this.new_mascota.nombre_mascota+"-"+this.new_mascota.uid
       const res = await this.fileStorage.cargarImagen(this.newFile, this.path, this.new_mascota.uid);
       this.new_mascota.foto = res;
-      this.dataLocal.agregarMascota(this.new_mascota.uid,
-        this.new_mascota.nombre_mascota,
-        this.new_mascota.raza,
-        this.new_mascota.edad,
-        this.new_mascota.tamanho,
-        this.new_mascota.vacunas,
-        this.new_mascota.motivosDarAdopcion,
-        this.new_mascota.fecha,
-        this.new_mascota.foto,
-        this.dataLocal.idPropietario);
       this.database.newDoc(this.new_mascota, this.path, this.database.getId()).then( res=> {
+        this.dataLocal.agregarMascota(this.new_mascota.uid,
+          this.new_mascota.nombre_mascota,
+          this.new_mascota.raza,
+          this.new_mascota.edad,
+          this.new_mascota.tamanho,
+          this.new_mascota.vacunas,
+          this.new_mascota.motivosDarAdopcion,
+          this.new_mascota.fecha,
+          this.new_mascota.foto,
+          this.dataLocal.idPropietario);
         this.navCtrl.navigateForward('/envio-solicitud');
         console.log("Mascota registrada");
       });
