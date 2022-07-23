@@ -69,10 +69,6 @@ const routes: Routes = [
     loadChildren: () => import('./administrador/datos-puesto-adopcion-persona/datos-puesto-adopcion-persona.module').then( m => m.DatosPuestoAdopcionPersonaPageModule)
   },
   {
-    path: 'infoadopcion2',
-    loadChildren: () => import('./adoptar/infoadopcion2/infoadopcion2.module').then( m => m.Infoadopcion2PageModule)
-  },
-  {
     path: 'datos',
     loadChildren: () => import('./administrador/datos/datos.module').then( m => m.DatosPageModule)
   },

@@ -30,9 +30,26 @@ export class LogInPage implements OnInit {
   ngOnInit() {
   }
 
+  limpiarUsuario(){
+    this.usuario = {
+      id: this.database.getId(),
+      nombres: '',
+      apellidos: '',
+      edad: null,
+      ocupacion: '',
+      direccion: '',
+      email: '',
+      celular: null,
+      fecha: new Date(),
+      administrador: 0,
+      password: ''
+    }
+  }
+
   validar(){
     this.auth.login(this.usuario.email, this.usuario.password).then( res => {
       console.log("Credenciales correctas");
+      this.limpiarUsuario();
       this.navCtrl.navigateForward('/home');
     }).catch( err => {
       console.log("Credenciales incorrectas");

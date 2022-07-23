@@ -1,12 +1,41 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>Mascotas en adopción</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-card *ngFor="let mascota of mascotas">
+    <ion-card-header>
+      <ion-card-subtitle>{{mascota.raza}}</ion-card-subtitle>
+      <ion-card-title>{{mascota.nombre_mascota}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <img [src]="mascota.foto" style="width: 100px; height: 100px;"/>
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="5">Edad:</ion-col>
+          <ion-col size="6">{{mascota.edad}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="5">Tamaño:</ion-col>
+          <ion-col size="6">{{mascota.tamanho}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="5">Vacunas:</ion-col>
+          <ion-col size="6">{{mascota.vacunas}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+    <ion-button (click)="adoptarMascota(mascota)" expand="full" fill="clear" shape="round">
+      Adóptame
+    </ion-button>
+  </ion-card>
 
-  <ion-card [routerLink]="['/info-adopcion']">
+  <!-- <ion-card [routerLink]="['/info-adopcion']">
     <ion-card-header>
       <ion-card-subtitle>Caniche</ion-card-subtitle>
       <ion-card-title>Max</ion-card-title>
@@ -19,7 +48,6 @@
     </ion-card-content>
   </ion-card>
 
-
   <ion-card [routerLink]="['/infoadopcion2']">
     <ion-card-header>
       <ion-card-subtitle>Mestizo</ion-card-subtitle>
@@ -30,6 +58,6 @@
       <img src="assets/perro2.jpg" /> <br>
       
     </ion-card-content>
-  </ion-card>
+  </ion-card> -->
 
 </ion-content>
