@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { FireauthService } from '../services/fireauth.service';
 
 
 @Component({
@@ -8,6 +10,11 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(private auth: FireauthService,
+              private navCtrl: NavController) {}
 
+  cerrar(){
+    this.auth.logOut();
+    this.navCtrl.navigateForward('/log-in');
+  }
 }

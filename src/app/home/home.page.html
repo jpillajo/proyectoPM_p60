@@ -3,16 +3,19 @@
     <img  style=" margin-left:30px ;margin-top: 30px" width="150px" src="assets/logo1.png">
     
   
-  <ion-chip style="margin-left: 60%;"class="logIn"[routerLink]="['/log-in']">
+  <!-- <ion-chip style="margin-left: 60%;"class="logIn"[routerLink]="['/log-in']">
     <ion-avatar>
       <img src="assets/usuario.png">
     </ion-avatar>
     <ion-label>Iniciar Sesión</ion-label>
-  </ion-chip>
+  </ion-chip> -->
 </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <section class="full-h">
+    <ion-button (click)="cerrar()" expand="full">Cerrar sesión</ion-button>
+  </section>
   <ion-toolbar>
     <ion-title style="margin-left: 5%;" size="BIG" class="title-large" text-center>Ayúdanos a ayudar</ion-title>
   </ion-toolbar>

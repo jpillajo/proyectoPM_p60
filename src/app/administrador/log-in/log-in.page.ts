@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { Propietario } from 'src/app/models/findme.models';
 import { FireauthService } from 'src/app/services/fireauth.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
@@ -24,16 +25,15 @@ export class LogInPage implements OnInit {
     administrador: 0,
     password: ''
   }
-  constructor(private database: FirestoreService, private auth: FireauthService) { }
+  constructor(private database: FirestoreService, private auth: FireauthService,  private navCtrl: NavController) { }
 
   ngOnInit() {
   }
 
   validar(){
-    console.log(this.usuario.email, this.usuario.password);
     this.auth.login(this.usuario.email, this.usuario.password).then( res => {
-      console.log(this.usuario.email, this.usuario.password);
       console.log("Credenciales correctas");
+      this.navCtrl.navigateForward('/home');
     }).catch( err => {
       console.log("Credenciales incorrectas");
     });
