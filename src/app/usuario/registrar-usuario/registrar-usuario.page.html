@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registrar usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <ion-header>
+    <ion-toolbar>
+      <ion-title style="background-color: black; color:white"size="small" class="title-large" text-center>Formulario para dar en adopción</ion-title>
+    </ion-toolbar>
+  </ion-header> -->
+  <ion-list>
+    <!-- <ion-list-header>Formulario para dar en adopción</ion-list-header> -->
+    <ion-item>
+      <ion-input [(ngModel)]="new_user.nombres" type="text" placeholder="Nombres" align="center"  pattern="[A-Za-zñÑáéíóú ]+"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="new_user.apellidos" type="text" placeholder="Apellidos" align="center"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="new_user.edad" type="number" placeholder="Edad" align="center" min="18"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="new_user.ocupacion" type="text" placeholder="Ocupación" align="center"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="new_user.direccion" type="text" placeholder="Dirección" align="center"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="new_user.email" type="email" placeholder="Correo" align="center"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="new_user.password" type="password" placeholder="Contraseña" align="center"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="new_user.celular" type="number" placeholder="Número de celular" align="center" maxlength="10"></ion-input>
+    </ion-item>
+    <section class="full-h">
+      <ion-button (click)="registrarPropietario()" expand="full">
+        Enviar formulario
+      </ion-button>
+      <!-- <ion-button expand="full" color="primary" [routerLink]="['/formulario-mascota']">Enviar formulario</ion-button> -->
+    </section>
+  </ion-list>
+</ion-content>

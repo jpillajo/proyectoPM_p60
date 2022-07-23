@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Formulario Adopción</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <!-- <ion-list-header>Formulario para dar en adopción</ion-list-header> -->
+    <ion-item>
+      <ion-input type="text" placeholder="Nombres" align="center"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" placeholder="Apellidos" align="center"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="number" placeholder="Edad" align="center"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" placeholder="Ocupación" align="center"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" placeholder="Dirección" align="center"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" placeholder="Correo" align="center"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="number" placeholder="Teléfono" align="center"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      Tipo de Vivienda: 
+      <ion-button expand="block" (click)="presentPicker()">Selecione Tipo de Vivienda</ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-list >
+        <ion-list-header>Disponibilidad de tiempo para la mascota</ion-list-header>
+        <ion-radio-group value="biff">
+         
+      
+          <ion-item>
+            <ion-label>1 a 2 horas</ion-label>
+            <ion-radio slot="start" value="biff"></ion-radio>
+          </ion-item>
+      
+          <ion-item>
+            <ion-label>2 a 3 horas</ion-label>
+            <ion-radio slot="start" value="griff"></ion-radio>
+          </ion-item>
+      
+          <ion-item>
+            <ion-label>3 a 4 horas </ion-label>
+            <ion-radio slot="start" value="buford"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+
+    <section class="full-h">
+      <ion-button expand="full" color="primary" [routerLink]="['/emvio-adopcion']">Enviar Solicitud</ion-button>
+    </section>
+
+  </ion-list>
+
+</ion-content>

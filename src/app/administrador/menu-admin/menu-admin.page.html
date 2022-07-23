@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Menú Administrador</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <section class="full-h">
+    <ion-button (click)="cerrar()" expand="full">Cerrar sesión</ion-button>
+  </section>
+  <ion-card [routerLink]="['/adopciones']">
+    <img src="assets/adoptar.jpg" />
+    <ion-card-header>
+      <ion-card-title id="titulos-home">Adopciones</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+  <ion-card [routerLink]="['/puesto']">
+    <img src="assets/darAdopcion.jpg" />
+    <ion-card-header>
+      <ion-card-title id="titulos-home">Puestos en adopción</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+</ion-content>

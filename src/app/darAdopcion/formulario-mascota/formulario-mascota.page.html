@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Find Me</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title size="small" class="title-large" text-center>Datos de la mascota a dar en adopción</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-list>
+    <!-- <ion-list-header>Formulario para dar en adopción</ion-list-header> -->
+    <ion-item>
+      <ion-input [(ngModel)]="new_mascota.nombre_mascota" type="text" placeholder="Nombre" align="center"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="new_mascota.raza" type="text" placeholder="Raza" align="center"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="new_mascota.edad" type="number" placeholder="Edad" align="center"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="new_mascota.tamanho" type="number" placeholder="Tamaño" align="center"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="new_mascota.vacunas" type="text" placeholder="Vacunas" align="center"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="new_mascota.motivosDarAdopcion" type="text" placeholder="Motivos para dar en adopción" align="center"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label align="center">Subir foto de la mascota:</ion-label>
+      <ion-button>
+        <label for="id-file">
+          <ion-icon slot="icon-only" name="image-outline"></ion-icon>
+        </label>
+        <input type="file" accept="image/*" style="display: none;" id="id-file" (change)="uploadImage($event)">
+      </ion-button>
+    </ion-item>
+    <img [src]="new_mascota.foto">
+    <section class="full-h">
+      <ion-button (click)="registrarMascota()" expand="full">
+        Enviar formulario
+      </ion-button>
+      <!-- <ion-button expand="full" color="primary" [routerLink]="['/envio-solicitud']">Enviar formulario</ion-button> -->
+    </section>
+  </ion-list>
+</ion-content>
