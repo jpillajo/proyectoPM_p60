@@ -51,7 +51,7 @@ export class FormularioPropietarioPage implements OnInit {
           this.new_propietario.direccion,
           this.new_propietario.email,
           this.new_propietario.celular,
-          this.new_propietario.fecha);
+          this.new_propietario.fecha,0);
         this.navCtrl.navigateForward('/formulario-mascota');
         console.log("Propietario registrado");
       });

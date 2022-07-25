@@ -53,7 +53,7 @@ export class RegistrarUsuarioPage implements OnInit {
           this.new_user.direccion,
           this.new_user.email,
           this.new_user.celular,
-          this.new_user.fecha);
+          this.new_user.fecha,0);
         this.navCtrl.navigateForward('/home');
         console.log("Usuario registrado");
       });

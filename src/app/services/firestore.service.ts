@@ -21,6 +21,12 @@ export class FirestoreService {
     return this.database.collection<tipo>(path).valueChanges();
   }
 
+  getDoc(path: string, email: string){
+    //return this.database.firestore.collection(path).where('email', '==', email).get();
+    return this.database.collection(path, ref => ref.where('email', '==', email)).valueChanges();
+    //return this.database.collection(path).doc(email).get();
+  }
+
   deleteDoc(path:string, id:string){
     return this.database.collection(path).doc(id).delete();
   }
