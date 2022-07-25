@@ -44,7 +44,14 @@ export class RegistrarUsuarioPage implements OnInit {
   }
 
   registrarPropietario(){
-    if (this.new_user.nombres != '') {
+    if (this.new_user.nombres != '' ||
+        this.new_user.apellidos !='' ||
+        this.new_user.edad == null ||
+        this.new_user.ocupacion != '' ||
+        this.new_user.direccion != '' ||
+        this.new_user.email != '' ||
+        this.new_user.celular == null ||
+        this.new_user.password != '') {
       this.database.newDoc(this.new_user, this.path, this.new_user.id).then( res=> {
         this.auth.registrar(this.new_user.email, this.new_user.password);
         this.dataLocal.agregarPropietario(this.new_user.id,
@@ -58,10 +65,10 @@ export class RegistrarUsuarioPage implements OnInit {
           this.new_user.fecha,0,
           this.new_user.password);
         this.navCtrl.navigateForward('/home');
-        console.log("Usuario registrado");
+        this.print("Usuario registrado");
       });
     } else {
-      console.log("No se pudo registrar el propietario");
+      this.print("No se pudo registrar el usuario");
     }
   }
   

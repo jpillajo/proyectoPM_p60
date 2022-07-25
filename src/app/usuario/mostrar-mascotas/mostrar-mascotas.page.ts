@@ -12,7 +12,6 @@ export class MostrarMascotasPage implements OnInit {
 
   path = 'Mascotas';
   mascotas: Mascota[]=[];
-  mensajes = ['No existen mascotas registradas por usted']
 
   constructor(public dataLocal: DataLocalService,
               private database:FirestoreService) { }

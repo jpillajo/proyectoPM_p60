@@ -9,7 +9,7 @@
 
 <ion-content>
   <ion-card *ngFor="let mascota of mascotas">
-    <div *ngIf="mascota.idPropietario===dataLocal.idPropietario; else mensaje">
+    <div *ngIf="mascota.idPropietario===dataLocal.idPropietario">
       <ion-card-header>
         <ion-card-subtitle>{{mascota.raza}}</ion-card-subtitle>
         <ion-card-title>{{mascota.nombre_mascota}}</ion-card-title>
@@ -33,7 +33,4 @@
       </ion-card-content>
     </div>
   </ion-card>
-  <ng-template #mensaje>
-    <ion-label>No existen mascotas registradas por usted</ion-label>
-  </ng-template>
 </ion-content>
