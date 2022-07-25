@@ -19,13 +19,6 @@ export class MenuAdminPage implements OnInit {
 
   cerrar(){
     this.auth.logOut();
-    //this.eliminarTodos();
     this.navCtrl.navigateForward('/log-in');
-  }
-
-  eliminarTodos() {
-    for (const productos of this.dataLocal.propietario) {
-      this.dataLocal.propietario.splice(0, this.dataLocal.propietario.length);
-    }
   }
 }

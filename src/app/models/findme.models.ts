@@ -10,6 +10,8 @@ export interface Propietario {
     fecha: Date;
     administrador: number;
     password: string;
+    tipoVivienda: string;
+    tiempoDisponible: string;
     //imagen: string;
 }
 
@@ -25,4 +27,11 @@ export interface Mascota {
     foto: string;
     idPropietario: string;
     estadoAdopcion: number;
+}
+
+export interface Solicitud {
+    idSolicitud: string;
+    idPropietarioSolicitud: string;
+    idMascotaSolicitud: string;
+    estadoSolicitud: number;
 }

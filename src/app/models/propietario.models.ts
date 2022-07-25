@@ -9,8 +9,9 @@ export class PropietarioLocal {
     public celular: number;
     public fecha: Date;
     public administrador: number;
+    public password: string;
 
-    constructor(id: string, nombres: string, apellidos: string, edad: number, ocupacion: string, direccion: string, email: string, celular: number, fecha: Date, administrador: number){
+    constructor(id: string, nombres: string, apellidos: string, edad: number, ocupacion: string, direccion: string, email: string, celular: number, fecha: Date, administrador: number, password: string){
         this.id = id;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -21,5 +22,6 @@ export class PropietarioLocal {
         this.celular = celular;
         this.fecha = fecha;
         this.administrador = administrador;
+        this.password = password;
     }
 }

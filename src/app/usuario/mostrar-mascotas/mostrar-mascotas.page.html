@@ -3,13 +3,13 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Mascotas en adopción</ion-title>
+    <ion-title>Mis mascotas</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-card *ngFor="let mascota of mascotas">
-    <div *ngIf="!(mascota.idPropietario===dataLocal.idPropietario)">
+    <div *ngIf="mascota.idPropietario===dataLocal.idPropietario; else mensaje">
       <ion-card-header>
         <ion-card-subtitle>{{mascota.raza}}</ion-card-subtitle>
         <ion-card-title>{{mascota.nombre_mascota}}</ion-card-title>
@@ -31,9 +31,9 @@
           </ion-row>
         </ion-grid>
       </ion-card-content>
-      <ion-button (click)="adoptarMascota(mascota)" expand="full" fill="clear" shape="round">
-        Adóptame
-      </ion-button>
     </div>
   </ion-card>
+  <ng-template #mensaje>
+    <ion-label>No existen mascotas registradas por usted</ion-label>
+  </ng-template>
 </ion-content>

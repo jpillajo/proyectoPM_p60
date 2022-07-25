@@ -13,6 +13,14 @@ export class FirestoreService {
     return collection.doc(id).set(datos);
   }
 
+  updateDoc(path:string, id:string, tiempo:string, vivienda: string ){
+    const collection = this.database.collection(path);
+    return collection.doc(id).update({
+      "tiempoDisponible": tiempo,
+      "tipoVivienda": vivienda
+  });
+  }
+
   getId(){
     return this.database.createId();
   }
