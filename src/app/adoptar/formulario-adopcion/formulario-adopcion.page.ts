@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { Propietario } from 'src/app/models/findme.models';
+import { Propietario, Solicitud } from 'src/app/models/findme.models';
 import { DataLocalService } from 'src/app/services/data-local.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 
@@ -14,8 +14,10 @@ export class FormularioAdopcionPage implements OnInit {
   tipoVivienda: any;
   tiempoDisponible: any;
   update_user: Propietario;
+  solicitud: Solicitud;
   dataLocalUser: any;
   dataLocalPet: any;
+  pathSolicitudes = 'Solicitudes';
   pathUser = 'Propietarios';
   pathPet = 'Mascotas';
 
@@ -58,7 +60,13 @@ export class FormularioAdopcionPage implements OnInit {
       password: '',
       tipoVivienda: '',
       tiempoDisponible: ''
-    }
+    };
+    this.solicitud = {
+      idSolicitud: '',
+      idPropietarioSolicitud: '',
+      idMascotaSolicitud: '',
+      estadoSolicitud: ''
+    };
   }
 
   enviarFormulario(){
@@ -86,6 +94,15 @@ export class FormularioAdopcionPage implements OnInit {
       });
       this.database.updatePet(this.pathPet, this.dataLocalPet['uid'], "En proceso de adopción").then( res=>{
         console.log("Mascota actualizada");
+      });
+      this.solicitud = {
+        idSolicitud: this.database.getId(),
+        idPropietarioSolicitud: this.update_user.id,
+        idMascotaSolicitud: this.dataLocalPet['uid'],
+        estadoSolicitud: "En proceso de evaluación"
+      }
+      this.database.newDoc(this.solicitud, this.pathSolicitudes, this.solicitud.idSolicitud).then( res=> {
+        console.log("Solicitud enviada");
       });
       this.navCtrl.navigateForward('/emvio-adopcion');
     } else {
