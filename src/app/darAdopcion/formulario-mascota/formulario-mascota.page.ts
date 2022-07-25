@@ -43,10 +43,10 @@ export class FormularioMascotaPage implements OnInit {
   }
 
   async registrarMascota(){
+    const res = await this.fileStorage.cargarImagen(this.newFile, this.path, this.new_mascota.uid);
+    this.new_mascota.foto = res;
     if (this.new_mascota.nombre_mascota != '') {
       //const nombre_foto = this.new_mascota.nombre_mascota+"-"+this.new_mascota.uid
-      const res = await this.fileStorage.cargarImagen(this.newFile, this.path, this.new_mascota.uid);
-      this.new_mascota.foto = res;
       this.database.newDoc(this.new_mascota, this.path, this.new_mascota.uid).then( res=> {
         this.dataLocal.agregarMascota(this.new_mascota.uid,
           this.new_mascota.nombre_mascota,
