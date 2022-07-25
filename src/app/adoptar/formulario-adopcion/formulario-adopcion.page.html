@@ -34,7 +34,7 @@
 
     <ion-item>
       <ion-label>Tipo de Vivienda:</ion-label>
-      <ion-select placeholder="Seleccione su tipo de vivienda">
+      <ion-select [(ngModel)]="tipoVivienda" (ionChange)="getVivienda($event)" placeholder="Seleccione su tipo de vivienda">
         <ion-select-option value="Casa">Casa</ion-select-option>
         <ion-select-option value="Departamento">Departamento</ion-select-option>
       </ion-select>
@@ -42,7 +42,7 @@
     </ion-item>
     <ion-list>
       <ion-list-header>Disponibilidad de tiempo para la mascota</ion-list-header>
-      <ion-radio-group value="1a2">
+      <ion-radio-group value="1a2" [(ngModel)]="tiempoDisponible" (ionChange)="getTiempoDisponible($event)">
         <ion-item>
           <ion-label>1 a 2 horas</ion-label>
           <ion-radio slot="start" value="1a2"></ion-radio>
@@ -58,7 +58,10 @@
       </ion-radio-group>
     </ion-list>
     <section class="full-h">
-      <ion-button expand="full" color="primary" [routerLink]="['/emvio-adopcion']">Enviar Solicitud</ion-button>
+      <ion-button (click)="enviarFormulario()" expand="full">
+        Enviar formulario
+      </ion-button>
+      <!-- <ion-button expand="full" color="primary" [routerLink]="['/emvio-adopcion']">Enviar Solicitud</ion-button> -->
     </section>
   </ion-list>
 </ion-content>

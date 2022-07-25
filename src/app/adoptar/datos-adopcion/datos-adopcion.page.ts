@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Mascota } from 'src/app/models/findme.models';
+import { DataLocalService } from 'src/app/services/data-local.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 
 @Component({
@@ -14,13 +15,14 @@ export class DatosAdopcionPage implements OnInit {
   mascotas: Mascota[];
 
   constructor(private database:FirestoreService,
-              private navCtrl: NavController) { }
+              private navCtrl: NavController,
+              public dataLocal: DataLocalService) { }
 
   ngOnInit() {
-    this.obtenerProductos();
+    this.obtenerMascotas();
   }
 
-  obtenerProductos(){
+  obtenerMascotas(){
     this.database.getCollections<Mascota>(this.path).subscribe( res=> {
       this.mascotas = res;
     });
@@ -28,6 +30,17 @@ export class DatosAdopcionPage implements OnInit {
 
   adoptarMascota(mascota: Mascota){
     console.log(mascota);
+    this.dataLocal.agregarMascota(mascota['uid'],
+    mascota['nombre_mascota'],
+    mascota['raza'],
+    mascota['edad'],
+    mascota['tamanho'],
+    mascota['vacunas'],
+    mascota['motivosDarAdopcion'],
+    mascota['fecha'],
+    mascota['foto'],
+    mascota['idPropietario'],
+    mascota['estadoAdopcion']);
     this.navCtrl.navigateForward('/formulario-adopcion');
   }
 }

@@ -2,7 +2,7 @@
   <ion-toolbar>
     <img  style=" margin-left:30px ;margin-top: 30px" width="150px" src="assets/logo1.png">
     <div *ngFor="let user of dataLocal.propietario">
-      <ion-label>Bienvenid@ {{user.nombres}} {{user.apellidos}}</ion-label>
+      <ion-label>Bienvenido/a {{user.nombres}} {{user.apellidos}}</ion-label>
     </div>
   <!-- <ion-chip style="margin-left: 60%;"class="logIn"[routerLink]="['/log-in']">
     <ion-avatar>
@@ -24,15 +24,21 @@
    
   </section>
   <ion-card [routerLink]="['/datos-adopcion']">
-    <img src="assets/adoptar.jpg" />
+    <img src="assets/adoptar.jpg"/>
     <ion-card-header>
       <ion-card-title style="background-color: black; color:white" id="titulos-home">Adopta aquí</ion-card-title>
     </ion-card-header>
   </ion-card>
   <ion-card [routerLink]="['/formulario-mascota']">
-    <img src="assets/darAdopcion.jpg" />
+    <img src="assets/darAdopcion.jpg"/>
     <ion-card-header>
       <ion-card-title style="background-color: black; color:white" id="titulos-home">Da en adopción aquí</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+  <ion-card [routerLink]="['/mostrar-mascotas']">
+    <img src="assets/misMascotas.jpg"/>
+    <ion-card-header>
+      <ion-card-title style="background-color: black; color:white" id="titulos-home">Mis mascotas</ion-card-title>
     </ion-card-header>
   </ion-card>
 </ion-content>

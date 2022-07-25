@@ -12,10 +12,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'formulario-propietario',
-    loadChildren: () => import('./darAdopcion/formulario-propietario/formulario-propietario.module').then( m => m.FormularioPropietarioPageModule)
-  },
-  {
     path: 'formulario-mascota',
     loadChildren: () => import('./darAdopcion/formulario-mascota/formulario-mascota.module').then( m => m.FormularioMascotaPageModule)
   },
@@ -72,6 +68,11 @@ const routes: Routes = [
     path: 'registrar-usuario',
     loadChildren: () => import('./usuario/registrar-usuario/registrar-usuario.module').then( m => m.RegistrarUsuarioPageModule)
   },
+  {
+    path: 'mostrar-mascotas',
+    loadChildren: () => import('./usuario/mostrar-mascotas/mostrar-mascotas.module').then( m => m.MostrarMascotasPageModule)
+  },
+
 ];
 
 @NgModule({

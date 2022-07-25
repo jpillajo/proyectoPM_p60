@@ -37,13 +37,15 @@ export class RegistrarUsuarioPage implements OnInit {
       celular: null,
       fecha: new Date(),
       administrador: 0,
-      password: ''
+      password: '',
+      tipoVivienda: '',
+      tiempoDisponible: ''
     }
   }
 
   registrarPropietario(){
     if (this.new_user.nombres != '') {
-      this.database.newDoc(this.new_user, this.path, this.database.getId()).then( res=> {
+      this.database.newDoc(this.new_user, this.path, this.new_user.id).then( res=> {
         this.auth.registrar(this.new_user.email, this.new_user.password);
         this.dataLocal.agregarPropietario(this.new_user.id,
           this.new_user.nombres,
@@ -53,7 +55,8 @@ export class RegistrarUsuarioPage implements OnInit {
           this.new_user.direccion,
           this.new_user.email,
           this.new_user.celular,
-          this.new_user.fecha,0);
+          this.new_user.fecha,0,
+          this.new_user.password);
         this.navCtrl.navigateForward('/home');
         console.log("Usuario registrado");
       });

@@ -9,8 +9,9 @@ export class MascotaLocal {
     public fecha: Date;
     public foto: string;
     public idPropietario: string;
+    public estadoAdopcion: string;
 
-    constructor(uid: string, nombre_mascota: string, raza: string, edad: number, tamanho: number, vacunas: string, motivosDarAdopcion: string, fecha: Date, foto: string, idPropietario: string){
+    constructor(uid: string, nombre_mascota: string, raza: string, edad: number, tamanho: number, vacunas: string, motivosDarAdopcion: string, fecha: Date, foto: string, idPropietario: string, estadoAdopcion: string){
         this.uid = uid;
         this.nombre_mascota = nombre_mascota;
         this.raza = raza;
@@ -21,5 +22,6 @@ export class MascotaLocal {
         this.fecha = fecha;
         this.foto = foto;
         this.idPropietario = idPropietario;
+        this.estadoAdopcion = estadoAdopcion;
     }
 }
