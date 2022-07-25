@@ -14,7 +14,9 @@ export class FormularioAdopcionPage implements OnInit {
   tiempoDisponible: any;
   update_user: Propietario;
   dataLocalUser: any;
-  path = 'Propietarios';
+  dataLocalPet: any;
+  pathUser = 'Propietarios';
+  pathPet = 'Mascotas';
 
   constructor(private database: FirestoreService,
               public dataLocal: DataLocalService) { }
@@ -30,7 +32,13 @@ export class FormularioAdopcionPage implements OnInit {
 
   getTiempoDisponible(ev){
     console.log(this.tiempoDisponible = ev.target.value);
-    this.tiempoDisponible = ev.target.value;
+    if (ev.target.value=="1a2") {
+      this.tiempoDisponible = "1 a 2 horas";  
+    } else if (ev.target.value=="2a3") {
+      this.tiempoDisponible = "2 a 3 horas";
+    } else if (ev.target.value=="3a4") {
+      this.tiempoDisponible = "3 a 4 horas";
+    }
   }
 
   actualizarPropietario(){
@@ -53,7 +61,8 @@ export class FormularioAdopcionPage implements OnInit {
 
   enviarFormulario(){
     this.dataLocalUser = this.dataLocal.propietario[0];
-    console.log(this.dataLocalUser);
+    this.dataLocalPet = this.dataLocal.mascota[0];
+    console.log(this.dataLocal.mascota);
     this.update_user = {
       id: this.dataLocalUser['id'],
       nombres: this.dataLocalUser['nombres'],
@@ -69,24 +78,15 @@ export class FormularioAdopcionPage implements OnInit {
       tipoVivienda: this.tipoVivienda,
       tiempoDisponible: this.tiempoDisponible
     }
-    console.log(this.update_user);
-    console.log(this.dataLocal.propietario);
     if (this.update_user.nombres != '') {
-      //this.database.newDoc(this.update_user, this.path, this.update_user.id).then( res=> {
-      this.database.updateDoc(this.path, this.update_user.id, this.tiempoDisponible, this.tipoVivienda).then( res=>{
-        // this.dataLocal.agregarPropietario(this.update_user.id,
-        //   this.update_user.nombres,
-        //   this.update_user.apellidos,
-        //   this.update_user.edad,
-        //   this.update_user.ocupacion,
-        //   this.update_user.direccion,
-        //   this.update_user.email,
-        //   this.update_user.celular,
-        //   this.update_user.fecha,0);
+      this.database.updateUser(this.pathUser, this.update_user.id, this.tiempoDisponible, this.tipoVivienda).then( res=>{
         console.log("Usuario actualizado");
       });
+      this.database.updatePet(this.pathPet, this.dataLocalPet['uid'], "En proceso de adopción").then( res=>{
+        console.log("Macota actualizada");
+      });
     } else {
-      console.log("No se pudo actualizar el propietario");
+      console.log("No se pudo actualizar ni el propietario, ni la mascota");
     }
   }
 }

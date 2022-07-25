@@ -8,17 +8,24 @@ export class FirestoreService {
 
   constructor(public database:AngularFirestore) { }
   
-  newDoc(datos:any, path:string, id:string ){
+  newDoc(datos:any, path:string, id:string){
     const collection = this.database.collection(path);
     return collection.doc(id).set(datos);
   }
 
-  updateDoc(path:string, id:string, tiempo:string, vivienda: string ){
+  updateUser(path:string, id:string, tiempo:string, vivienda: string){
     const collection = this.database.collection(path);
     return collection.doc(id).update({
       "tiempoDisponible": tiempo,
       "tipoVivienda": vivienda
-  });
+    });
+  }
+
+  updatePet(path:string, id:string, estadoAdopcion:string){
+    const collection = this.database.collection(path);
+    return collection.doc(id).update({
+      "estadoAdopcion": estadoAdopcion
+    });
   }
 
   getId(){

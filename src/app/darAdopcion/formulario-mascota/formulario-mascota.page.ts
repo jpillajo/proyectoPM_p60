@@ -38,7 +38,7 @@ export class FormularioMascotaPage implements OnInit {
       fecha: new Date(),
       foto: '',
       idPropietario: this.dataLocal.idPropietario,
-      estadoAdopcion: 0
+      estadoAdopcion: 'En adopción'
     }
   }
 

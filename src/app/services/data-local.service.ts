@@ -23,7 +23,7 @@ export class DataLocalService {
     this.esAdministrador = nuevoPropietario.administrador;
   }
 
-  agregarMascota(uid: string, nombre_mascota: string, raza: string, edad: number, tamanho: number, vacunas: string, motivosDarAdopcion: string, fecha: Date, foto: string, idPropietario: string, estadoAdopcion: number){
+  agregarMascota(uid: string, nombre_mascota: string, raza: string, edad: number, tamanho: number, vacunas: string, motivosDarAdopcion: string, fecha: Date, foto: string, idPropietario: string, estadoAdopcion: string){
     //this.navCtrl.navigateForward('/tabs/tab2');
     const nuevaMascota = new MascotaLocal(uid, nombre_mascota, raza, edad, tamanho, vacunas, motivosDarAdopcion, fecha, foto, idPropietario, estadoAdopcion);
     this.mascota.unshift(nuevaMascota);
