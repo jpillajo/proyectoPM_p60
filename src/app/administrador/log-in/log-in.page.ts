@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { Propietario } from 'src/app/models/findme.models';
 import { DataLocalService } from 'src/app/services/data-local.service';
 import { FireauthService } from 'src/app/services/fireauth.service';
@@ -32,7 +32,8 @@ export class LogInPage implements OnInit {
   constructor(private database: FirestoreService,
               private auth: FireauthService,
               private navCtrl: NavController,
-              public dataLocal: DataLocalService) { }
+              public dataLocal: DataLocalService,
+              public toastController: ToastController) { }
 
   ngOnInit() {
   }
@@ -72,7 +73,7 @@ export class LogInPage implements OnInit {
       if (res) {
         this.auth.login(this.usuario.email, this.usuario.password).then( res => {
         //this.auth.login(respuesta['email'], respuesta['password']).then( res => {
-          console.log("Credenciales correctas");
+          this.print("Credenciales correctas");
           if (this.dataLocal.esAdministrador==1) {
             this.navCtrl.navigateForward('/menu-admin');
             this.limpiarUsuario();
@@ -81,9 +82,18 @@ export class LogInPage implements OnInit {
             this.limpiarUsuario();
           }
         }).catch( err => {
-          console.log("Credenciales incorrectas");
+          this.print("Credenciales incorrectas");
         });
       }
     });
+  }
+
+  async print(msg:string){
+    const toast = await this.toastController.create({
+      //cssClass: 'text_msg',
+      message: msg,
+      duration: 2000
+    });
+    toast.present();
   }
 }
