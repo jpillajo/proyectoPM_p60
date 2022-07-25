@@ -9,7 +9,7 @@
 
 <ion-content>
   <ion-card *ngFor="let mascota of mascotas">
-    <div *ngIf="!(mascota.idPropietario===dataLocal.idPropietario)">
+    <div *ngIf="!(mascota.idPropietario===dataLocal.idPropietario) && mascota.estadoAdopcion==='En adopción'">
       <ion-card-header>
         <ion-card-subtitle>{{mascota.raza}}</ion-card-subtitle>
         <ion-card-title>{{mascota.nombre_mascota}}</ion-card-title>

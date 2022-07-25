@@ -65,7 +65,8 @@ export class FormularioAdopcionPage implements OnInit {
       idSolicitud: '',
       idPropietarioSolicitud: '',
       idMascotaSolicitud: '',
-      estadoSolicitud: ''
+      estadoSolicitud: '',
+      tipoSolicitud: ''
     };
   }
 
@@ -99,7 +100,8 @@ export class FormularioAdopcionPage implements OnInit {
         idSolicitud: this.database.getId(),
         idPropietarioSolicitud: this.update_user.id,
         idMascotaSolicitud: this.dataLocalPet['uid'],
-        estadoSolicitud: "En proceso de evaluación"
+        estadoSolicitud: "En proceso de evaluación",
+        tipoSolicitud: "Adoptar"
       }
       this.database.newDoc(this.solicitud, this.pathSolicitudes, this.solicitud.idSolicitud).then( res=> {
         console.log("Solicitud enviada");
