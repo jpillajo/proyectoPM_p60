@@ -34,4 +34,5 @@ export interface Solicitud {
     idPropietarioSolicitud: string;
     idMascotaSolicitud: string;
     estadoSolicitud: string;
+    tipoSolicitud: string;
 }

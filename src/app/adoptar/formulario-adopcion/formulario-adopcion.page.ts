@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Propietario } from 'src/app/models/findme.models';
+import { NavController } from '@ionic/angular';
+import { Propietario, Solicitud } from 'src/app/models/findme.models';
 import { DataLocalService } from 'src/app/services/data-local.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 
@@ -13,13 +14,16 @@ export class FormularioAdopcionPage implements OnInit {
   tipoVivienda: any;
   tiempoDisponible: any;
   update_user: Propietario;
+  solicitud: Solicitud;
   dataLocalUser: any;
   dataLocalPet: any;
+  pathSolicitudes = 'Solicitudes';
   pathUser = 'Propietarios';
   pathPet = 'Mascotas';
 
   constructor(private database: FirestoreService,
-              public dataLocal: DataLocalService) { }
+              public dataLocal: DataLocalService,
+              private navCtrl: NavController) { }
 
   ngOnInit() {
     this.actualizarPropietario();
@@ -56,13 +60,20 @@ export class FormularioAdopcionPage implements OnInit {
       password: '',
       tipoVivienda: '',
       tiempoDisponible: ''
-    }
+    };
+    this.solicitud = {
+      idSolicitud: '',
+      idPropietarioSolicitud: '',
+      idMascotaSolicitud: '',
+      estadoSolicitud: '',
+      tipoSolicitud: ''
+    };
   }
 
   enviarFormulario(){
     this.dataLocalUser = this.dataLocal.propietario[0];
     this.dataLocalPet = this.dataLocal.mascota[0];
-    console.log(this.dataLocal.mascota);
+    console.log(this.dataLocalPet['uid']);
     this.update_user = {
       id: this.dataLocalUser['id'],
       nombres: this.dataLocalUser['nombres'],
@@ -83,8 +94,19 @@ export class FormularioAdopcionPage implements OnInit {
         console.log("Usuario actualizado");
       });
       this.database.updatePet(this.pathPet, this.dataLocalPet['uid'], "En proceso de adopción").then( res=>{
-        console.log("Macota actualizada");
+        console.log("Mascota actualizada");
       });
+      this.solicitud = {
+        idSolicitud: this.database.getId(),
+        idPropietarioSolicitud: this.update_user.id,
+        idMascotaSolicitud: this.dataLocalPet['uid'],
+        estadoSolicitud: "En proceso de evaluación",
+        tipoSolicitud: "Adoptar"
+      }
+      this.database.newDoc(this.solicitud, this.pathSolicitudes, this.solicitud.idSolicitud).then( res=> {
+        console.log("Solicitud enviada");
+      });
+      this.navCtrl.navigateForward('/emvio-adopcion');
     } else {
       console.log("No se pudo actualizar ni el propietario, ni la mascota");
     }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, ToastController } from '@ionic/angular';
-import { Mascota } from 'src/app/models/findme.models';
+import { Mascota, Solicitud } from 'src/app/models/findme.models';
 import { DataLocalService } from 'src/app/services/data-local.service';
 import { FirestorageService } from 'src/app/services/firestorage.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
@@ -12,8 +12,10 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 })
 export class FormularioMascotaPage implements OnInit {
 
+  solicitud: Solicitud;
   new_mascota: Mascota;
   path = 'Mascotas';
+  pathSolicitudes = 'Solicitudes';
   newFile: any;
 
   constructor(private database: FirestoreService,
@@ -39,14 +41,21 @@ export class FormularioMascotaPage implements OnInit {
       foto: '',
       idPropietario: this.dataLocal.idPropietario,
       estadoAdopcion: 'En adopción'
-    }
+    };
+    this.solicitud = {
+      idSolicitud: '',
+      idPropietarioSolicitud: '',
+      idMascotaSolicitud: '',
+      estadoSolicitud: '',
+      tipoSolicitud: ''
+    };
   }
 
   async registrarMascota(){
+    const res = await this.fileStorage.cargarImagen(this.newFile, this.path, this.new_mascota.uid);
+    this.new_mascota.foto = res;
     if (this.new_mascota.nombre_mascota != '') {
       //const nombre_foto = this.new_mascota.nombre_mascota+"-"+this.new_mascota.uid
-      const res = await this.fileStorage.cargarImagen(this.newFile, this.path, this.new_mascota.uid);
-      this.new_mascota.foto = res;
       this.database.newDoc(this.new_mascota, this.path, this.new_mascota.uid).then( res=> {
         this.dataLocal.agregarMascota(this.new_mascota.uid,
           this.new_mascota.nombre_mascota,
@@ -59,6 +68,16 @@ export class FormularioMascotaPage implements OnInit {
           this.new_mascota.foto,
           this.dataLocal.idPropietario,
           this.new_mascota.estadoAdopcion);
+        this.solicitud = {
+          idSolicitud: this.database.getId(),
+          idPropietarioSolicitud: this.new_mascota.idPropietario,
+          idMascotaSolicitud: this.new_mascota.uid,
+          estadoSolicitud: "En proceso de evaluación",
+          tipoSolicitud: "Dar en adopción"
+        }
+        this.database.newDoc(this.solicitud, this.pathSolicitudes, this.solicitud.idSolicitud).then( res=> {
+          console.log("Solicitud enviada");
+        });
         this.navCtrl.navigateForward('/envio-solicitud');
         console.log("Mascota registrada");
       });
